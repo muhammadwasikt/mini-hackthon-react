@@ -9,16 +9,19 @@ import { CategoryProvider } from './utils/Context/CategoryContext.jsx';
 import { FleshSaleProvider } from './utils/Context/FlashSaleContext.jsx';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserProvider } from './utils/Context/UserContext.jsx';
+import { StateProvider } from './utils/Context/StateContext.jsx';
 
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-  <UserProvider>
-    <CategoryProvider>
-      <FleshSaleProvider>
-        <App />
-      </FleshSaleProvider>
-    </CategoryProvider>
+    <UserProvider>
+      <StateProvider>
+        <CategoryProvider>
+          <FleshSaleProvider>
+            <App />
+          </FleshSaleProvider>
+        </CategoryProvider>
+      </StateProvider>
     </UserProvider>
   </BrowserRouter>
 )

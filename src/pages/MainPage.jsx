@@ -9,14 +9,15 @@ import NewArrivals from "../component/common/NewArrivals";
 import Header from "../component/Header"
 import { StateContext } from "../utils/Context/StateContext.jsx";
 
-const Home = ()=>{
+const MainPage = ()=>{
     const {setState} = useContext(StateContext)
 
     useEffect(()=>{
         setState(false)
     },[])
     return(
-        <div className="px-4">
+        <div className="p-4">
+        <Header />
         <Banner />
         <MainCard />
         <FeatureCategory />
@@ -28,4 +29,4 @@ const Home = ()=>{
     )
 }
 
-export default Home;
+export default MainPage;

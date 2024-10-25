@@ -1,13 +1,16 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import Slider from "react-slick";
 import { FleshSaleContext } from "../../utils/Context/FlashSaleContext";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from "react-router";
+import CardPopup from "./CardPopup";
 
 
 
 const FleshSale = () => {
+    const [isFullDescription, setIsFullDescription] = useState(false)
+    const [cardId, setCardId] = useState(0)
     let sliderRef = useRef(null);
 
     const settings = {
@@ -15,7 +18,23 @@ const FleshSale = () => {
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000
+        autoplaySpeed: 2000,
+        responsive: [
+            {
+              breakpoint: 780,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+              }
+            },
+            {
+              breakpoint: 580,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ]
     };
     const { products } = useContext(FleshSaleContext)
 
@@ -31,17 +50,21 @@ const FleshSale = () => {
     const handleNavigate = () => {
       navigate('/products')
     }
-
+    const handleClick = (e) => {
+        setCardId(e)
+        setIsFullDescription(true)
+      }
     return (
-        <div className="">
+        <div >
+            <CardPopup fullDescription={isFullDescription} setFullDescription={setIsFullDescription} cardId={cardId} />
             <h3 className="mb-4">Flash Sale</h3>
             <div className="w-[100%] overflow-scroll">
                 <Slider ref={slider => (sliderRef = slider)} {...settings}>
                     {
                         uniqueProducts?.map((item, key) => {
-                            const { image, title, description, price } = item
+                            const { image, title, description, price ,id} = item
                             return (
-                                <Card key={key} className="max-w-[95%]" onClick={handleNavigate}>
+                                <Card key={key} className="max-w-[95%]" onClick={()=>handleClick(id)}>
                                     <Card.Img variant="top" src={image} className="w-[100%] h-[50vmin] object-contain"/>
                                     <Card.Body >
                                         <Card.Title>{title.slice(0 , 15)}</Card.Title>
