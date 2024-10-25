@@ -27,6 +27,7 @@ const SignIn = () => {
         navigate('/')
         setIsLoader(false)
         reset()
+        console.log(user)
         // ...
        })
        .catch((error) => {

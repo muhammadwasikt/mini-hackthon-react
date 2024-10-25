@@ -4,6 +4,7 @@ import Products from '../pages/Products.jsx';
 import Contact from '../pages/Contact.jsx'
 import SignIn from '../Auth/SignIn.jsx';
 import SignUp from '../Auth/SignUp.jsx';
+import Header from '../component/Header.jsx';
 
  const NavRoutes = [
     {
@@ -12,11 +13,17 @@ import SignUp from '../Auth/SignUp.jsx';
     },
     {
         path: '/products',
-        element: <Products />        
+        element: <div className='p-4'>
+        <Header />
+        <Products />
+        </div>        
     },
     {
         path: '/contact',
-        element: <Contact />        
+        element: <div className='p-4'>
+        <Header />
+        <Contact />
+        </div>         
     },
     {
         path: '/auth/signin',

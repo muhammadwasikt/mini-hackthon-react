@@ -1,10 +1,21 @@
 import { Link } from "react-router-dom";
 import Button from "./common/Button";
 import { CiSearch } from "react-icons/ci";
+import { useContext, useState } from "react";
+import { UserContext } from "../utils/Context/UserContext";
+import LogOut from "../Auth/LogOut";
 
 
 const Header = ()=> {
+  const [logOut, setLogOut] = useState(false)
+  const {isUser} =  useContext(UserContext);
+console.log(isUser)
+const handleLogOut = ()=>{
+  setLogOut(true)
+}
   return (
+    <>
+    <LogOut signout={logOut} setsignOut={setLogOut} />
   <nav className="w-[100%] mt-[-25px] p-6 flex items-center fixed z-10 bg-white justify-between">
     <div><img src="https://chawkbazar.vercel.app/assets/images/logo.svg" /></div>
     <ul className="flex items-center pt-2">
@@ -17,10 +28,14 @@ const Header = ()=> {
       <CiSearch className="text-[24px]"/>
     </div>
     <div className="flex gap-x-2 pr-6">
+      {isUser ? <Button title='Sign Out' clas='p-1 rounded-lg border hover:bg-gray-200' click={handleLogOut}/> :
+      <div className="flex gap-x-2 pr-6">
       <Button title={<Link className="no-underline mx-4 text-black" to='/auth/signin'>Sign In</Link>} clas='p-1 rounded-lg border hover:bg-gray-200' />
-      <Button title={<Link className="no-underline mx-4 text-black" to='/auth/signup'>Sign Up</Link>} clas='p-1 rounded-lg border hover:bg-gray-200' />   
+      <Button title={<Link className="no-underline mx-4 text-black" to='/auth/signup'>Sign Up</Link>} clas='p-1 rounded-lg border hover:bg-gray-200' /> 
+      </div>}  
     </div>
   </nav>
+  </>
   );
 }
 

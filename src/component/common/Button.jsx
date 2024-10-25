@@ -1,8 +1,8 @@
 
-const Button = ({title , clas}) => {
+const Button = ({title , clas , click}) => {
   return (
     <div>
-      <button className={clas}>{title}</button>
+      <button className={clas} onClick={click}>{title}</button>
     </div>
   )
 }

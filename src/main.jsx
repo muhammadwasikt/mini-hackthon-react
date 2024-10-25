@@ -8,14 +8,17 @@ import "slick-carousel/slick/slick-theme.css";
 import { CategoryProvider } from './utils/Context/CategoryContext.jsx';
 import { FleshSaleProvider } from './utils/Context/FlashSaleContext.jsx';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserProvider } from './utils/Context/UserContext.jsx';
 
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
+  <UserProvider>
     <CategoryProvider>
       <FleshSaleProvider>
         <App />
       </FleshSaleProvider>
     </CategoryProvider>
+    </UserProvider>
   </BrowserRouter>
 )

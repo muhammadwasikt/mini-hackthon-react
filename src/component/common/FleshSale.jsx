@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { FleshSaleContext } from "../../utils/Context/FlashSaleContext";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from "react-router";
 
 
 
@@ -26,7 +27,10 @@ const FleshSale = () => {
         }
         return false
     })
-
+    const navigate = useNavigate()
+    const handleNavigate = () => {
+      navigate('/products')
+    }
 
     return (
         <div className="">
@@ -37,7 +41,7 @@ const FleshSale = () => {
                         uniqueProducts?.map((item, key) => {
                             const { image, title, description, price } = item
                             return (
-                                <Card key={key} className="max-w-[95%]">
+                                <Card key={key} className="max-w-[95%]" onClick={handleNavigate}>
                                     <Card.Img variant="top" src={image} className="w-[100%] h-[50vmin] object-contain"/>
                                     <Card.Body >
                                         <Card.Title>{title.slice(0 , 15)}</Card.Title>
