@@ -3,7 +3,7 @@ import Banner from "../component/common/Banner";
 import FeatureCategory from "../component/common/FeatureCategory";
 import FeaturedProducts from "../component/common/FeaturedProducts";
 import FleshSale from "../component/common/FleshSale";
-import MainCard from "../component/common/MainCard";
+import MainCard from "../component/common/mainCard.jsx";
 import NewArrivals from "../component/common/NewArrivals";
 import Header from "../component/Header"
 
