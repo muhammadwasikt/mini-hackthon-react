@@ -47,21 +47,17 @@ const Products = () => {
   };
 
   const handleSearch = () => {
-    if (search.length > 0) {
       const filteredSearch = filterProduct.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase())
     );
     setIsFound(filteredSearch.length === 0);
     setFilterProduct(filteredSearch);
-  }
   };
 
   const handleEnterSearch = (e) => {
-    if (search.length > 0) {
       if (e.key === "Enter") {
         handleSearch();
       }
-    }
   };
   const handleUserSearch = () => {
     handleSearch()
@@ -76,7 +72,7 @@ const Products = () => {
       {isLoading ? <div className="loader m-auto mt-[250px]"></div>
         :
         <div>
-          <div className='w-[100%] max-md:flex-col flex justify-between gap-5 px-[20px] mt-[80px]'>
+          <div className={data ? 'w-[100%] max-md:flex-col flex justify-between gap-5 p-[20px] mt-[80px] fixed z-10 bg-white shadow-lg ' :null}>
             {data ? <>
               <div className='bg-gray-100 outline-none p-2 px-4 w-[100%] flex items-center justify-between'>
                 <input onKeyDown={handleEnterSearch} onInput={handleUserSearch} value={search} placeholder='Type here you search......' onChange={(e) => setSearch(e.target.value)} className='w-[100%] outline-none bg-transparent' />
