@@ -1,22 +1,33 @@
 'use client'
 
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Field, Label, Switch } from '@headlessui/react'
 import { StateContext } from "../utils/Context/StateContext";
+import { toast, ToastContainer } from 'react-toastify';
 
 const Contact = () => {
-  const {setState} = useContext(StateContext)
+  const { setState } = useContext(StateContext)
+  const formRef = useRef(null);
 
-  useEffect(()=>{
-      setState(false)
-  },[])
-    const [agreed, setAgreed] = useState(false)
-const handleSubmit = ()=>{
-  
-}
-    return (
-      <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+  useEffect(() => {
+    setState(false)
+  }, [])
+  const [agreed, setAgreed] = useState(false)
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!agreed) {
+      toast.error('You must agree to the privacy policy to submit the form.');
+      return;
+    }
+    toast.success('Your message has been sent successfully');
+    if (formRef.current) {
+      formRef.current.reset();
+      setAgreed(false); // Reset the switch
+    }
+  };
+  return (
+    <div className="isolate bg-white px-6 my-40 sm:my-32 lg:px-8">
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
@@ -32,7 +43,7 @@ const handleSubmit = ()=>{
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">CONTACT US</h2>
       </div>
-      <form onSubmit={()=>handleSubmit} method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
+      <form ref={formRef} onSubmit={handleSubmit} className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
             <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
@@ -40,7 +51,7 @@ const handleSubmit = ()=>{
             </label>
             <div className="mt-2.5">
               <input
-              required
+                required
                 id="first-name"
                 name="first-name"
                 type="text"
@@ -55,7 +66,7 @@ const handleSubmit = ()=>{
             </label>
             <div className="mt-2.5">
               <input
-              required
+                required
                 id="last-name"
                 name="last-name"
                 type="text"
@@ -70,7 +81,7 @@ const handleSubmit = ()=>{
             </label>
             <div className="mt-2.5">
               <input
-              required
+                required
                 id="company"
                 name="company"
                 type="text"
@@ -85,7 +96,7 @@ const handleSubmit = ()=>{
             </label>
             <div className="mt-2.5">
               <input
-              required
+                required
                 id="email"
                 name="email"
                 type="email"
@@ -118,7 +129,7 @@ const handleSubmit = ()=>{
                 />
               </div>
               <input
-              required
+                required
                 id="phone-number"
                 name="phone-number"
                 type="tel"
@@ -173,9 +184,9 @@ const handleSubmit = ()=>{
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
-    );
-  };
-  
-  export default Contact;
-  
+  );
+};
+
+export default Contact;
