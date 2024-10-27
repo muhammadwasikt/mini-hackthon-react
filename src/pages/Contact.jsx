@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router";
 'use client'
 
 import { useContext, useEffect, useState } from 'react'
@@ -12,9 +11,10 @@ const Contact = () => {
   useEffect(()=>{
       setState(false)
   },[])
-    const navigate = useNavigate()
     const [agreed, setAgreed] = useState(false)
-
+const handleSubmit = ()=>{
+  
+}
     return (
       <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div
@@ -32,7 +32,7 @@ const Contact = () => {
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">CONTACT US</h2>
       </div>
-      <form onSubmit={()=>navigate('/')} method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
+      <form onSubmit={()=>handleSubmit} method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
             <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
