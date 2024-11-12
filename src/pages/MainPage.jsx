@@ -8,24 +8,28 @@ import MainCard from "../component/common/MainCard.jsx";
 import NewArrivals from "../component/common/NewArrivals";
 import Header from "../component/Header"
 import { StateContext } from "../utils/Context/StateContext.jsx";
+import Footer from "../component/Footer.jsx";
 
-const MainPage = ()=>{
-    const {setState} = useContext(StateContext)
+const MainPage = () => {
+    const { setState } = useContext(StateContext)
 
-    useEffect(()=>{
+    useEffect(() => {
         setState(false)
-    },[])
-    return(
-        <div className="p-4">
-        <Header />
-        <Banner />
-        <MainCard />
-        <FeatureCategory />
-        <FeaturedProducts />
-        <FleshSale />
-        <Baner />
-        <NewArrivals />
-        </div>
+    }, [])
+    return (
+        <>
+            <div className="p-4">
+                <Header />
+                <Banner />
+                <MainCard />
+                <FeatureCategory />
+                <FeaturedProducts />
+                <FleshSale />
+                <Baner />
+                <NewArrivals />
+            </div>
+            <Footer />
+        </>
     )
 }
 

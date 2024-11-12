@@ -55,7 +55,7 @@ const SignUp = () => {
      </div>
      {errors.pasword && <span className="text-[10px] text-[red] mb-3 px-2">Pasword is required</span>}
      </div>
-     <input className="bg-gray-200 p-2 shadow-md active:translate-y-[2px] text-inputColor active:shadow-none" type="submit" value={isLoader ? 'Loading...':'Sign in'}/>
+     <input className="bg-gray-200 p-2 shadow-md active:translate-y-[2px] text-inputColor active:shadow-none" type="submit" value={isLoader ? 'Loading...':'Sign up'}/>
      <p className="text-[13px] mt-7 text-center">Already have an account: <span><Link to='/auth/signin'>Sign In</Link></span></p>
      </form>
      <ToastContainer />

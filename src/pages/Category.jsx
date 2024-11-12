@@ -11,7 +11,6 @@ const Category = () => {
     const singleData = data?.filter((item) => {
         return item.name === name
     })
-    console.log(singleData);
     
     return (
         <div className='grid justify-center xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 p-[20px] mt-[50px] gap-[20px] w-[100%] '>
